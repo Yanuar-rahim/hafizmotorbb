@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Data Motor | Hafiz Motor</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- ===================== SIDEBAR ===================== -->
+
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-motorcycle"></i>
+
+        <h2>HAFIZ MOTOR</h2>
+
+        <span>Admin Panel</span>
+      </div>
+      <ul>
+        <li>
+          <a href="dashboard.html">
+            <i class="fa-solid fa-gauge"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="dataMotor.html">
+            <i class="fa-solid fa-motorcycle"></i>
+            <span>Data Motor</span>
+          </a>
+        </li>
+        <li>
+          <a href="laporan.html">
+            <i class="fa-solid fa-chart-column"></i>
+            <span>Laporan</span>
+          </a>
+        </li>
+      </ul>
+
+      <button id="logoutBtn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Logout
+      </button>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+
+    <main class="main">
+      <!-- NAVBAR -->
+
+      <div class="navbar">
+        <div>
+          <h2>Data Motor</h2>
+
+          <p id="tanggal"></p>
+        </div>
+
+        <div class="user">
+          <i class="fa-solid fa-circle-user"></i>
+
+          <div>
+            <h4 id="namaAdmin">Administrator</h4>
+
+            <span id="jam"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+
+      <div class="cards">
+        <div class="card total">
+          <i class="fa-solid fa-motorcycle"></i>
+
+          <h3>Total Motor</h3>
+
+          <h1 id="totalMotor">0</h1>
+        </div>
+
+        <div class="card ready">
+          <i class="fa-solid fa-circle-check"></i>
+
+          <h3>READY</h3>
+
+          <h1 id="motorReady">0</h1>
+        </div>
+
+        <div class="card keluar">
+          <i class="fa-solid fa-circle-xmark"></i>
+
+          <h3>KELUAR</h3>
+
+          <h1 id="motorKeluar">0</h1>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+
+      <div class="table-area">
+        <div class="table-header">
+          <h3>Daftar Motor</h3>
+
+          <input
+            type="text"
+            id="searchMotor"
+            placeholder="Cari UID, Merk, Plat..."
+            class="search-input"
+          />
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+
+              <th>UID</th>
+
+              <th>Merk</th>
+
+              <th>Tipe</th>
+
+              <th>Warna</th>
+
+              <th>Tahun</th>
+
+              <th>Plat</th>
+
+              <th>Harga</th>
+
+              <th>Status</th>
+
+              <th>Aksi</th>
+            </tr>
+          </thead>
+
+          <tbody id="tableMotor">
+            <tr>
+              <td colspan="10" style="text-align: center;">Memuat data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- ===================== MODAL INPUT MOTOR ===================== -->
+
+    <div class="modal" id="motorModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>UID Baru Terdeteksi!!!</h2>
+        </div>
+
+        <div class="modal-body">
+        <h3 style="text-align: center">Silahkan lengkapi data motor</h3>
+          <div class="uid-box">
+            <label>UID</label>
+
+            <input id="uidMotor" readonly />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-item">
+              <label>Merk</label>
+
+              <input id="merk" />
+            </div>
+
+            <div class="form-item">
+              <label>Tipe</label>
+
+              <input id="tipe" />
+            </div>
+
+            <div class="form-item">
+              <label>Warna</label>
+
+              <input id="warna" />
+            </div>
+
+            <div class="form-item">
+              <label>Tahun</label>
+
+              <input id="tahun" maxlength="4" />
+            </div>
+
+            <div class="form-item">
+              <label>Plat</label>
+
+              <input id="plat" />
+            </div>
+
+            <div class="form-item">
+              <label>Harga</label>
+
+              <input id="harga" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-primary" id="btnSimpanMotor">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================
+                MODAL EDIT MOTOR
+    ======================================= -->
+
+    <div class="modal" id="editModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Edit Data Motor</h2>
+        </div>
+
+        <div class="modal-body">
+          <div class="uid-box">
+            <label>UID</label>
+
+            <input id="editUid" readonly />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-item">
+              <label>Merk</label>
+
+              <input id="editMerk" />
+            </div>
+
+            <div class="form-item">
+              <label>Tipe</label>
+
+              <input id="editTipe" />
+            </div>
+
+            <div class="form-item">
+              <label>Warna</label>
+
+              <input id="editWarna" />
+            </div>
+
+            <div class="form-item">
+              <label>Tahun</label>
+
+              <input id="editTahun" />
+            </div>
+
+            <div class="form-item">
+              <label>Plat</label>
+
+              <input id="editPlat" />
+            </div>
+
+            <div class="form-item">
+              <label>Harga</label>
+
+              <input id="editHarga" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="tutupEdit()">Batal</button>
+
+          <button class="btn-primary" id="btnUpdateMotor">Update</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== LIBRARY ===================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Firebase -->
+
+    <script type="module" src="js/firebase.js"></script>
+
+    <!-- Authentication -->
+
+    <script type="module" src="js/auth.js"></script>
+
+    <!-- Data Motor -->
+
+    <script type="module" src="js/dataMotor.js"></script>
+
+  </body>
+</html>

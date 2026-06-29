@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login Admin | Hafiz Motor</title>
+
+    <link rel="stylesheet" href="css/login.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container" data-aos="fade-up" data-aos-duration="1200">
+      <div class="login-box">
+        <div class="logo">
+          <i class="fa-solid fa-motorcycle"></i>
+
+          <h2>HAFIZ MOTOR</h2>
+
+          <p>Admin Dashboard</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label>Username</label>
+
+            <div class="input-field">
+              <i class="fa-solid fa-user"></i>
+
+              <input
+                type="text"
+                id="username"
+                placeholder="Masukkan Username"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+
+            <div class="input-field">
+              <i class="fa-solid fa-lock"></i>
+
+              <input
+                type="password"
+                id="password"
+                placeholder="Masukkan Password"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit">
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+            Login
+          </button>
+        </form>
+
+        <div class="footer">© 2026 Hafiz Motor Baubau</div>
+      </div>
+    </div>
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Authentication -->
+    <script src="js/auth.js"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+      import {
+        getDatabase,
+        ref,
+        get,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCt00ma_JI9TltEKrE-ZoWubZ4Ze6UvQq8",
+
+        authDomain: "hafizmotor-iot-a1c64.firebaseapp.com",
+
+        databaseURL:
+          "https://hafizmotor-iot-a1c64-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+        projectId: "hafizmotor-iot-a1c64",
+
+        storageBucket: "hafizmotor-iot-a1c64.firebasestorage.app",
+
+        messagingSenderId: "773926648428",
+
+        appId: "1:773926648428:web:4c7d6702c5f82f3ea1b649",
+      };
+
+      const app = initializeApp(firebaseConfig);
+
+      const db = getDatabase(app);
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value.trim();
+
+          const password = document.getElementById("password").value.trim();
+
+          if (username == "" || password == "") {
+            Swal.fire({
+              icon: "info",
+
+              title: "Perhatian",
+
+              text: "Username dan Password wajib diisi.",
+
+              confirmButtonColor: "#2563EB",
+
+              heightAuto: false,
+
+              scrollbarPadding: false,
+            });
+
+            return;
+          }
+
+          try {
+            const snapshot = await get(ref(db, "admin"));
+
+            if (!snapshot.exists()) {
+              Swal.fire({
+                icon: "warning",
+
+                title: "Data Admin Tidak Ditemukan",
+
+                text: "Silakan periksa data pada Firebase.",
+
+                confirmButtonColor: "#2563EB",
+
+                heightAuto: false,
+
+                scrollbarPadding: false,
+              });
+
+              return;
+            }
+
+            const admin = snapshot.val();
+
+            if (username === admin.username && password === admin.password) {
+              sessionStorage.setItem("login", "true");
+
+              sessionStorage.setItem("nama", admin.nama);
+
+              sessionStorage.setItem("username", admin.username);
+
+              Swal.fire({
+                icon: "success",
+
+                title: "Login Berhasil",
+
+                text: "Selamat Datang " + admin.nama,
+
+                timer: 1800,
+
+                timerProgressBar: true,
+
+                showConfirmButton: false,
+
+                heightAuto: false,
+
+                scrollbarPadding: false,
+              }).then(() => {
+                window.location.replace("dashboard.html");
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+
+                title: "Login Gagal",
+
+                text: "Username atau Password Salah.",
+
+                confirmButtonColor: "#2563EB",
+
+                heightAuto: false,
+
+                scrollbarPadding: false,
+              });
+            }
+          } catch (error) {
+            console.error(error);
+
+            Swal.fire({
+              icon: "error",
+
+              title: "Terjadi Kesalahan",
+
+              text: error.message,
+
+              confirmButtonColor: "#2563EB",
+
+              heightAuto: false,
+
+              scrollbarPadding: false,
+            });
+          }
+        });
+
+      AOS.init();
+    </script>
+  </body>
+</html>

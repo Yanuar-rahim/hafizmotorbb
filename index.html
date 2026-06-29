@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hafiz Motor | Monitoring Stok Motor</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <nav data-aos="fade-down" data-aos-duration="1000">
+      <div class="logo">
+        <i class="fa-solid fa-motorcycle"></i>
+        <h2>HAFIZ MOTOR</h2>
+      </div>
+
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#fitur">Fitur</a></li>
+        <li><a href="#cara">Cara Kerja</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li>
+          <a class="btn-login" href="login.html"> Masuk </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+      <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+        <h1>
+          Monitoring Stok Motor
+          <span>Berbasis RFID & IoT</span>
+        </h1>
+        <p>
+          Sistem ini membantu proses monitoring stok kendaraan menggunakan RFID,
+          ESP32 dan Firebase Realtime Database secara realtime.
+        </p>
+        <div class="hero-button">
+          <a href="login.html" class="btn-primary">
+            Masuk Admin
+          </a>
+          <a href="#fitur" class="btn-secondary"> Lihat Fitur </a>
+        </div>
+      </div>
+
+      <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
+        <img src="img/hero.png" />
+      </div>
+    </section>
+
+    <!-- FITUR -->
+
+    <section id="fitur" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Fitur Sistem</h2>
+
+      <div class="fitur-grid">
+        <div class="fitur-card">
+          <i class="fa-solid fa-id-card"></i>
+
+          <h3>RFID</h3>
+
+          <p>Scan RFID untuk mendeteksi UID motor secara otomatis.</p>
+        </div>
+
+        <div class="fitur-card">
+          <i class="fa-solid fa-database"></i>
+
+          <h3>Firebase</h3>
+
+          <p>Semua data tersimpan pada Firebase Realtime Database.</p>
+        </div>
+
+        <div class="fitur-card">
+          <i class="fa-solid fa-chart-line"></i>
+
+          <h3>Realtime</h3>
+
+          <p>Status stok berubah secara realtime.</p>
+        </div>
+
+        <div class="fitur-card">
+          <i class="fa-solid fa-chart-column"></i>
+
+          <h3>Dashboard</h3>
+
+          <p>Monitoring stok motor dengan grafik interaktif.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARA KERJA -->
+
+    <section id="cara" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Cara Kerja Sistem</h2>
+
+      <div class="timeline">
+        <div class="step">
+          <i class="fa-solid fa-id-card"></i>
+
+          <h4>Scan RFID</h4>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+          <i class="fa-solid fa-microchip"></i>
+
+          <h4>ESP32 Membaca UID</h4>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+          <i class="fa-solid fa-database"></i>
+
+          <h4>Cek Firebase</h4>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+          <i class="fa-solid fa-repeat"></i>
+
+          <h4>Update Status</h4>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+
+          <h4>Simpan Riwayat</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- TENTANG -->
+
+    <section id="tentang" data-aos="fade-up" data-aos-duration="1000">
+      <div class="about">
+        <div>
+          <h2>Tentang Sistem</h2>
+
+          <p>
+            Sistem Monitoring Stok Motor Hafiz Motor merupakan sistem berbasis
+            Internet of Things yang menggunakan RFID RC522, ESP32, Firebase
+            Realtime Database serta Website Admin untuk memonitor stok kendaraan
+            secara realtime.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Hafiz Motor</p>
+
+      <p>Monitoring Stok Motor Berbasis RFID & IoT</p>
+    </footer>
+
+    <script src="js/index.js"></script>
+  </body>
+  <script>
+    AOS.init();
+  </script>
+</html>

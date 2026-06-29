@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Laporan Monitoring | Hafiz Motor</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/laporan.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  </head>
+
+  <body>
+    <!-- ===========================
+                SIDEBAR
+    =========================== -->
+
+    <div class="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-motorcycle"></i>
+
+        <h2>HAFIZ MOTOR</h2>
+
+        <span>Admin Panel</span>
+      </div>
+
+      <ul>
+        <li>
+          <a href="dashboard.html">
+            <i class="fa-solid fa-gauge"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="dataMotor.html">
+            <i class="fa-solid fa-motorcycle"></i>
+            <span>Data Motor</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="laporan.html">
+            <i class="fa-solid fa-chart-column"></i>
+            <span>Laporan</span>
+          </a>
+        </li>
+      </ul>
+
+      <button id="logoutBtn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
+    </div>
+
+    <!-- ===========================
+                MAIN
+    =========================== -->
+
+    <div class="main">
+      <!-- NAVBAR -->
+
+      <div class="navbar">
+        <div>
+          <h2>Laporan Monitoring</h2>
+
+          <p id="tanggal"></p>
+        </div>
+
+        <div class="user">
+          <i class="fa-solid fa-circle-user"></i>
+
+          <div>
+            <h4 id="namaAdmin">Administrator</h4>
+
+            <span id="jam"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+
+      <div class="cards">
+        <div class="card total">
+          <i class="fa-solid fa-list"></i>
+
+          <h3>Total Riwayat</h3>
+
+          <h1 id="totalRiwayat">0</h1>
+        </div>
+
+        <div class="card ready">
+          <i class="fa-solid fa-circle-check"></i>
+
+          <h3>READY</h3>
+
+          <h1 id="totalReady">0</h1>
+        </div>
+
+        <div class="card keluar">
+          <i class="fa-solid fa-circle-xmark"></i>
+
+          <h3>KELUAR</h3>
+
+          <h1 id="totalKeluar">0</h1>
+        </div>
+
+        <div class="card aktivitas">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+
+          <h3>Aktivitas Hari Ini</h3>
+
+          <h1 id="aktivitasHariIni">0</h1>
+        </div>
+      </div>
+
+      <div class="chart-area">
+        <div class="chart-container-laporan">
+          <div class="chart-card">
+            <h3>Status Motor</h3>
+
+            <div class="chart-box">
+              <canvas id="chartStatus"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Persentase Status</h3>
+
+            <div class="chart-box">
+              <canvas id="chartPie"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-full">
+          <h3>Aktivitas 7 Hari Terakhir</h3>
+
+          <div class="chart-box-activity">
+            <canvas id="chartAktivitas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+
+      <div class="table-area">
+        <div class="table-header">
+          <h3>Riwayat Monitoring RFID</h3>
+
+          <div class="action-group">
+            <input
+              type="text"
+              id="searchLaporan"
+              placeholder="Cari UID / Merk / Plat"
+            />
+
+            <select id="filterStatus">
+              <option value="SEMUA">Semua Status</option>
+
+              <option value="READY">READY</option>
+              <option value="KELUAR">KELUAR</option>
+            </select>
+
+            <button class="btn btn-blue" id="btnPdf">
+              <i class="fa-solid fa-file-pdf"></i>
+              PDF
+            </button>
+
+            <button class="btn btn-green" id="btnExcel">
+              <i class="fa-solid fa-file-excel"></i>
+              Excel
+            </button>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>UID</th>
+              <th>Merk</th>
+              <th>Tipe</th>
+              <th>Plat</th>
+              <th>Status</th>
+              <th>Waktu</th>
+            </tr>
+          </thead>
+
+          <tbody id="tableLaporan">
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 30px">
+                Memuat data...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===================== MODAL INPUT MOTOR ===================== -->
+
+    <div class="modal" id="motorModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>UID Baru Terdeteksi!!!</h2>
+        </div>
+
+        <div class="modal-body">
+          <h3 style="text-align: center">Silahkan lengkapi data motor</h3>
+          <div class="uid-box">
+            <label>UID</label>
+
+            <input id="uidMotor" readonly />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-item">
+              <label>Merk</label>
+
+              <input id="merk" />
+            </div>
+
+            <div class="form-item">
+              <label>Tipe</label>
+
+              <input id="tipe" />
+            </div>
+
+            <div class="form-item">
+              <label>Warna</label>
+
+              <input id="warna" />
+            </div>
+
+            <div class="form-item">
+              <label>Tahun</label>
+
+              <input id="tahun" maxlength="4" />
+            </div>
+
+            <div class="form-item">
+              <label>Plat</label>
+
+              <input id="plat" />
+            </div>
+
+            <div class="form-item">
+              <label>Harga</label>
+
+              <input id="harga" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-primary" id="btnSimpanMotor">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Firebase -->
+
+    <script type="module" src="js/firebase.js"></script>
+
+    <!-- Authentication -->
+
+    <script type="module" src="js/auth.js"></script>
+
+    <!-- Laporan -->
+
+    <script type="module" src="js/laporan.js"></script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard | Hafiz Motor</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <div id="motorModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>UID Baru Terdeteksi!!</h2>
+      </div>
+
+      <div class="modal-body">
+        <h3 style="text-align: center">Silahkan lengkapi data motor</h3>
+        <label>UID RFID</label>
+        <input id="uidMotor" readonly />
+
+        <div class="form-grid">
+          <div>
+            <label>Merk</label>
+            <input id="merk" />
+          </div>
+
+          <div>
+            <label>Tipe</label>
+            <input id="tipe" />
+          </div>
+
+          <div>
+            <label>Warna</label>
+            <input id="warna" />
+          </div>
+
+          <div>
+            <label>Tahun</label>
+            <input id="tahun" />
+          </div>
+
+          <div>
+            <label>Plat Nomor</label>
+            <input id="plat" />
+          </div>
+
+          <div>
+            <label>Harga</label>
+            <input id="harga" />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-primary" id="btnSimpanMotor">Simpan Motor</button>
+      </div>
+    </div>
+  </div>
+
+  <body>
+    
+    <!-- ========================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================= -->
+
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-motorcycle"></i>
+        <h2>HAFIZ MOTOR</h2>
+        <span>Admin Panel</span>
+      </div>
+
+      <ul>
+        <li class="active">
+          <a href="dashboard.html">
+            <i class="fa-solid fa-gauge"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="dataMotor.html">
+            <i class="fa-solid fa-motorcycle"></i>
+            <span>Data Motor</span>
+          </a>
+        </li>
+        <li>
+          <a href="laporan.html">
+            <i class="fa-solid fa-chart-column"></i>
+            <span>Laporan</span>
+          </a>
+        </li>
+      </ul>
+
+      <button id="logoutBtn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
+    </aside>
+
+    <!-- ========================= -->
+    <!-- CONTENT -->
+    <!-- ========================= -->
+
+    <main class="main">
+      <!-- Navbar -->
+
+      <header class="navbar">
+        <div>
+          <h2>Dashboard</h2>
+
+          <p>Monitoring Stok Motor Bekas Secara Realtime</p>
+        </div>
+
+        <div class="user">
+          <i class="fa-solid fa-user-circle"></i>
+
+          <div>
+            <h4 id="namaAdmin">Administrator</h4>
+
+            <span id="tanggal"></span>
+
+            <br />
+
+            <span id="jam"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Statistik -->
+
+      <section class="cards">
+        <div class="card total">
+          <i class="fa-solid fa-motorcycle"></i>
+
+          <h3>Total Motor</h3>
+
+          <h1 id="totalMotor">0</h1>
+        </div>
+
+        <div class="card ready">
+          <i class="fa-solid fa-circle-check"></i>
+
+          <h3>READY</h3>
+
+          <h1 id="motorReady">0</h1>
+        </div>
+
+        <div class="card keluar">
+          <i class="fa-solid fa-circle-xmark"></i>
+
+          <h3>KELUAR</h3>
+
+          <h1 id="motorKeluar">0</h1>
+        </div>
+      </section>
+
+      <!-- Grafik -->
+
+      <section class="chart-area">
+        <div class="box">
+          <h3>Grafik Status Motor</h3>
+
+          <div class="chart-container">
+            <canvas id="chartStatus"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Motor -->
+
+      <section class="table-area">
+        <div class="table-header">
+          <h3>Data Motor</h3>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+
+              <th>UID RFID</th>
+
+              <th>Merk</th>
+
+              <th>Tipe</th>
+
+              <th>Plat</th>
+
+              <th>Tahun</th>
+
+              <th>Status</th>
+
+              <th>Harga</th>
+            </tr>
+          </thead>
+
+          <tbody id="tableMotor">
+            <tr>
+              <td colspan="8" style="text-align: center;">Memuat data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- Firebase -->
+
+    <script type="module" src="js/firebase.js"></script>
+
+    <!-- Authentication -->
+
+    <script type="module" src="js/auth.js"></script>
+
+    <!-- Dashboard -->
+
+    <script type="module" src="js/dashboard.js"></script>
+  </body>
+</html>
