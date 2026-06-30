@@ -62,3 +62,26 @@ document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
     });
   });
 });
+
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    if (navMenu.classList.contains("active")) {
+        menuToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    } else {
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }
+
+});
+
+// Menutup menu setelah item diklik
+document.querySelectorAll("#navMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+});
