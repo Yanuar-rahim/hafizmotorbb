@@ -6,29 +6,31 @@
 }
 
 ::-webkit-scrollbar {
-    display: none;  
+  display: none;
 }
 
 body {
   background: #0f172a;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow-y: scroll;
+  padding: 25px;
 }
 
 .container {
   width: 100%;
+  max-width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .login-box {
-  width: 420px;
+  width: 100%;
+  max-width: 420px;
   background: #fff;
-  border-radius: 15px;
+  border-radius: 18px;
   padding: 40px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
 }
@@ -108,4 +110,63 @@ button:hover {
   text-align: center;
   font-size: 13px;
   color: #94a3b8;
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 100%;
+    padding: 30px 25px;
+    border-radius: 16px;
+  }
+
+  .logo {
+    margin-bottom: 30px;
+  }
+
+  .logo i {
+    font-size: 50px;
+  }
+
+  .logo h2 {
+    font-size: 24px;
+  }
+
+  .logo p {
+    font-size: 13px;
+  }
+
+  .input-group {
+    margin-bottom: 18px;
+  }
+
+  .input-group label {
+    font-size: 14px;
+  }
+
+  .input-field {
+    height: 48px;
+  }
+
+  .input-field input {
+    font-size: 15px;
+  }
+
+  button {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .footer {
+    margin-top: 25px;
+    font-size: 12px;
+  }
 }

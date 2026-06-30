@@ -317,23 +317,45 @@ footer p {
   margin: 6px 0;
 }
 
+/*=========================
+HAMBURGER
+=========================*/
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
 /* ===================================
    RESPONSIVE
 =================================== */
 
 @media (max-width: 1200px) {
-  .fitur-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .hero {
     grid-template-columns: 1fr;
-
     text-align: center;
+    gap: 40px;
   }
 
   .hero-button {
     justify-content: center;
+  }
+
+  .fitur-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .timeline {
@@ -353,73 +375,107 @@ footer p {
 
 @media (max-width: 768px) {
   nav {
+    height: 75px;
     padding: 0 20px;
   }
 
+  .logo h2 {
+    font-size: 20px;
+  }
+
+  .menu-toggle {
+    display: block !important;
+  }
+
   nav ul {
-    display: none;
+    position: fixed;
+    top: 75px;
+    right: -100%;
+    width: 260px;
+    height: calc(100vh - 75px);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    padding-top: 30px;
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.12);
+    transition: 0.35s;
+  }
+
+  nav ul.active {
+    right: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 18px 25px;
+  }
+
+  .btn-login {
+    margin: 20px;
+    display: block;
+    text-align: center;
+    width: calc(100% - 40px);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 130px;
+    text-align: center;
+  }
+
+  .hero-image {
+    order: -1;
+  }
+
+  .hero-image img {
+    width: 85%;
+    margin: auto;
   }
 
   .hero-text h1 {
-    font-size: 40px;
+    font-size: 34px;
   }
 
   .hero-text p {
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .hero-button {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 250px;
   }
 
   .fitur-grid {
     grid-template-columns: 1fr;
   }
 
-  section {
-    padding: 70px 20px;
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    flex-direction: column;
+  }
+
+  .line {
+    width: 4px;
+    height: 55px;
+  }
+
+  .about {
+    padding: 30px;
   }
 }
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-
-  margin-top: -30px;
-}
-
-.stat-card {
-  background: white;
-
-  padding: 30px;
-
-  border-radius: 15px;
-
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-
-  text-align: center;
-
-  transition: 0.3s;
-}
-
-.stat-card:hover {
-  transform: translateY(-8px);
-}
-
-.stat-card i {
-  font-size: 42px;
-
-  color: #2563eb;
-
-  margin-bottom: 15px;
-}
-
-.stat-card h2 {
-  font-size: 42px;
-
-  margin: 10px 0;
-
-  color: #2563eb;
-}
-
-.stat-card p {
-  color: #64748b;
-}
-

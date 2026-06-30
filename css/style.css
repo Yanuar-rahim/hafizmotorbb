@@ -613,8 +613,215 @@ MODAL
   height: 100% !important;
 }
 
-@media (max-width: 900px) {
-  .chart-container {
+/* ===================================
+   RESPONSIVE TABLET
+=================================== */
+
+@media (max-width: 1200px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chart-container-laporan {
     grid-template-columns: 1fr;
+  }
+
+  .search-input {
+    width: 40%;
+  }
+}
+
+/* ===================================
+   RESPONSIVE MOBILE
+=================================== */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ================= Sidebar ================= */
+
+  .sidebar {
+    width: 260px;
+
+    left: -260px;
+
+    transition: 0.3s;
+
+    z-index: 9999;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .main {
+    margin-left: 0;
+
+    width: 100%;
+
+    padding: 15px;
+  }
+
+  /* ================= Navbar ================= */
+
+  .navbar {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 18px;
+  }
+
+  .navbar h2 {
+    font-size: 22px;
+  }
+
+  .user {
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+
+  .user i {
+    font-size: 38px;
+  }
+
+  /* ================= Card ================= */
+
+  .cards {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card h1 {
+    font-size: 30px;
+  }
+
+  /* ================= Chart ================= */
+
+  .chart-container-laporan {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card {
+    padding: 15px;
+  }
+
+  .chart-box {
+    height: 260px;
+  }
+
+  .chart-box-activity {
+    height: 220px;
+  }
+
+  /* ================= Table ================= */
+
+  .table-area {
+    overflow-x: auto;
+
+    padding: 15px;
+  }
+
+  table {
+    min-width: 700px;
+  }
+
+  .table-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  /* ================= Modal ================= */
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .modal-body {
+    padding: 18px;
+  }
+
+  .modal-header h2 {
+    font-size: 22px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-footer {
+    display: flex;
+
+    flex-direction: column-reverse;
+
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}
+
+/* ===================================
+   EXTRA SMALL DEVICE
+=================================== */
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 15px;
+  }
+
+  .navbar h2 {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card h1 {
+    font-size: 26px;
+  }
+
+  .card h3 {
+    font-size: 15px;
+  }
+
+  .chart-box {
+    height: 220px;
+  }
+
+  .chart-box-activity {
+    height: 200px;
+  }
+
+  .logo i {
+    font-size: 40px;
+  }
+
+  .logo h2 {
+    font-size: 18px;
+  }
+
+  .logo span {
+    font-size: 12px;
   }
 }
