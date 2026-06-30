@@ -18,23 +18,25 @@
   </head>
 
   <body>
-    <!-- NAVBAR -->
 
+    <!-- NAVBAR -->
     <nav data-aos="fade-down" data-aos-duration="1000">
       <div class="logo">
         <i class="fa-solid fa-motorcycle"></i>
         <h2>HAFIZ MOTOR</h2>
       </div>
 
-      <ul>
+      <ul id="navMenu">
         <li><a href="#home">Home</a></li>
         <li><a href="#fitur">Fitur</a></li>
         <li><a href="#cara">Cara Kerja</a></li>
         <li><a href="#tentang">Tentang</a></li>
-        <li>
-          <a class="btn-login" href="login.html"> Masuk </a>
-        </li>
+        <li><a class="btn-login" href="login.html">Masuk</a></li>
       </ul>
+
+      <button id="menuToggle" class="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </nav>
 
     <!-- HERO -->
@@ -50,9 +52,7 @@
           ESP32 dan Firebase Realtime Database secara realtime.
         </p>
         <div class="hero-button">
-          <a href="login.html" class="btn-primary">
-            Masuk Admin
-          </a>
+          <a href="login.html" class="btn-primary"> Masuk Admin </a>
           <a href="#fitur" class="btn-secondary"> Lihat Fitur </a>
         </div>
       </div>
